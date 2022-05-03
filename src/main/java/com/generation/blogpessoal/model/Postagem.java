@@ -1,17 +1,22 @@
 package com.generation.blogpessoal.model;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import org.hibernate.annotations.UpdateTimestamp;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity //create table
 @Table(name = "tb_postagens") //tb_postagens
@@ -22,7 +27,7 @@ public class Postagem {
 	private Long id;
 	
 	@NotBlank(message = "O atributo Título é obrigatório!")
-	@Size(min = 10, max = 100, message = "O atributo Título deve conter no mínimo 5 e no máximo 100 caracteres.")
+	@Size(min = 10, max = 100, message = "O atributo Título deve conter no mínimo 10 e no máximo 100 caracteres.")
 	private String titulo;
 	
 	@NotNull(message = "O atributo Texto é obrigatório!")
@@ -31,6 +36,18 @@ public class Postagem {
 	
 	@UpdateTimestamp
 	private LocalDateTime data;
+	
+	@ManyToOne
+	@JsonIgnoreProperties("postagem")
+	private Tema tema;
+
+	public Tema getTema() {
+		return tema;
+	}
+
+	public void setTema(Tema tema) {
+		this.tema = tema;
+	}
 
 	public Long getId() {
 		return id;
