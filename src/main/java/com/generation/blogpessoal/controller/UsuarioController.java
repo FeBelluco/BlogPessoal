@@ -35,6 +35,7 @@ public class UsuarioController {
 	@Autowired
 	private UsuarioRepository usuarioRepository;
 	
+	
 	@GetMapping("/all")
 	public ResponseEntity <List<Usuario>> getAll(){
 		
@@ -61,6 +62,7 @@ public class UsuarioController {
 		return usuarioService.atualizarUsuario(usuario)
 				.map(resposta -> ResponseEntity.status(HttpStatus.OK).body(resposta))
 				.orElse(ResponseEntity.notFound().build());
+				
 	}	
 	
 	@PostMapping("/logar")
