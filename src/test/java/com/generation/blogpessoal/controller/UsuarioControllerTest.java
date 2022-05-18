@@ -147,10 +147,10 @@ public class UsuarioControllerTest {
 	public void deveAutenticarUsuario() {
 		
 		usuarioService.cadastrarUsuario(new Usuario(0L, 
-				"Marisa Souza", "marisa_souza@email.com.br", "13465278", "https://i.imgur.com/T12NIp9.jpg"));
+				"Felipe Loureiro", "febelluco1@gmail.com", "4F2b0l", "https://i.imgur.com/GgLQxu9.jpeg"));
 
 		HttpEntity<UsuarioLogin> corpoRequisicao = new HttpEntity<UsuarioLogin>(new UsuarioLogin(0L, 
-				"", "marisa_souza@email.com.br", "13465278", "", ""));
+				"", "febelluco1@gmail.com", "4F2b0l", "", ""));
 		
 		ResponseEntity<UsuarioLogin> corpoResposta = testRestTemplate
 				.exchange("/usuarios/logar", HttpMethod.POST, corpoRequisicao, UsuarioLogin.class);
